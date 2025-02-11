@@ -45,6 +45,7 @@ const useSignUp = () => {
     }
   })
   
+  
   const signUp = (data: SignUpData) => {
     mutation.mutate(data)
   }

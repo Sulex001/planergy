@@ -8,6 +8,10 @@ const handleSavedData = (key: string, data: unknown ) => {
       const getNextPage = (currentPage: string, setCurrentPage: React.Dispatch<React.SetStateAction<string>>, data: unknown  ) => {
         handleSavedData(currentPage,data);  
         switch (currentPage) {
+          case "get_started":
+                navigate('/personal_information');
+                setCurrentPage("personal_information");
+                break; 
             case "personal_Information":
                 navigate('/role_selection');
                 setCurrentPage("role_selection");

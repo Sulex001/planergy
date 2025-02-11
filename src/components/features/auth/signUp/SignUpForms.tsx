@@ -11,25 +11,45 @@ import { Loader2 } from "lucide-react"
 import { Link } from "react-router-dom"
 import PasswordInput from "./PasswordInputs"
 import useSignUp from "@/hooks/useSignUp"
+import { useFormNavigation } from "@/hooks/useFormNavigation"
+import { useState } from "react"
 
 
+enum CurrentPage {
+  GET_STARTED = "get_started",
+}
 
 
 const SignUpForm: React.FC = () => {
+  const [currentPage, setCurrentPage] = useState(CurrentPage.GET_STARTED)
+  const { getNextPage } = useFormNavigation()
+  const storedData = JSON.parse(sessionStorage.getItem("get_started") || "{}")
   const { signUp,isLoading, isSuccess, isError} = useSignUp()
   const { register, handleSubmit, formState: { errors, isSubmitting },} = useForm<SignUpSchema> ({
-    resolver: zodResolver(signUpSchema),
+        resolver: zodResolver(signUpSchema),
+        defaultValues: {
+          email: storedData.email || "",
+          username: storedData.username || "",
+        },
   })
 
   const onSubmit = (data: SignUpSchema) => {
     if(data.password === data.confirmPassword) {
-      console.log(data)
    const userData = {
     email: data.email,
     password: data.password,
     username: data.username,
    }
    signUp(userData)
+   
+   const getStarted = {
+    email: data.email,
+    username: data.username, 
+   }
+   getNextPage(
+    currentPage,
+    setCurrentPage as React.Dispatch<React.SetStateAction<string>>,
+    getStarted as SignUpSchema);
     }else
     {
       throw new Error("Passwords do not match")

@@ -10,7 +10,7 @@ import { useState } from "react";
   const API_URL = import.meta.env.VITE_API_URL
   const user = state.userDetails.user
   
-    console.log(user)
+
     const updateAvatar = async (avatar: File) => {
       const formData = new FormData();
       formData.append("file", avatar);

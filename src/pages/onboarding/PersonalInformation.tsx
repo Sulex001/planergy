@@ -26,7 +26,7 @@ const PersonalInformation: React.FC = () => {
   const [image, setImage] = useState<File | null>(null)
   const [imageError, setImageError] = useState<string | null>(null)
   const { updateAvatar} = useStorage()
-
+  
   const storedData = JSON.parse(sessionStorage.getItem("personal_Information") || "{}")
   
   const { register, handleSubmit, formState: { errors }, } = useForm<PersonalInformationSchemas>({
@@ -36,15 +36,13 @@ const PersonalInformation: React.FC = () => {
             phoneNumber: storedData.phoneNumber || "",
           },
   })
-
+  
   const onSubmit: SubmitHandler<PersonalInformationSchemas> = (data) => {
     if (data) {
-      console.log(data);  
       getNextPage(
         currentPage,
         setCurrentPage as React.Dispatch<React.SetStateAction<string>>,
         data as UserCredentials);
-      
     }
     if (image) {
       updateAvatar(image)

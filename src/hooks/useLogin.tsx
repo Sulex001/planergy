@@ -15,7 +15,7 @@ interface LoginResponse {
   token: string
 }
 
-const API_URL = import.meta.env.VITE_API_URL
+const API_URL = import.meta.env.VITE_API_URL;
 
 
 const useLogin = () => {
@@ -23,17 +23,17 @@ const useLogin = () => {
   const { dispatch } = useAuthContext();
   const mutation = useMutation<LoginResponse, Error, LoginData>({
     mutationFn: async (data: LoginData) => {
-      // sending the sign up data to the server
-     
-      const response = await axios.post(`${API_URL}/api/user/login`, data)
+      // sending the login data to the server
+      const response = await axios.post(`${API_URL}/api/user/login`, data);
       return response.data
     },
     onSuccess: (data: LoginResponse) => {
       localStorage.setItem("user", JSON.stringify(data))
       localStorage.setItem("token", JSON.stringify(data.token));
-      dispatch({ type: "SIGN_IN", payload: data })
+    
       if(data){
-        console.log("data", data)
+        dispatch({ type: "SIGN_IN", payload: data })
+        console.log(data)
         navigate("/dashboard");
       }
     },
@@ -42,7 +42,7 @@ const useLogin = () => {
       return { error: error.message }
     }
   })
-  
+
   const login = (data: LoginData) => {
     mutation.mutate(data)
   }

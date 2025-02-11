@@ -23,9 +23,7 @@ const Login: React.FC = () => {
     const { login, isLoading,error, isSuccess, isError } = useLogin();
 
     const onSubmit = (data: LoginSchema) => {
-        const {email, password} = data
-        console.log(email, password)
-        login({email, password})
+        login(data)
     }
 
     return (

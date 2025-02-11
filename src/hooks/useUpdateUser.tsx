@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 interface SignUpUpdate {
     fullName: string;
-    email: string| undefined,
-    username: string| undefined,
+    email: string
+    username: string
     role:  string,
-    company: string,
+    companyName: string,
     phoneNumber: string,
 }
 
@@ -28,11 +28,12 @@ const useUpdateUser = () => {
   const mutation = useMutation<SignUpResponse, Error, SignUpUpdate>({
     mutationFn: async (data: SignUpUpdate) => {
       // get token from local storage;
-      const token = localStorage.getItem('token'); 
+      const token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token') || '') : '';
+      console.log(token);
       const response = await axios.patch(`${API_URL}/api/user/update_profile`, data, {
         headers: {
           'Authorization': `Bearer ${token}`, // Add the Bearer token to the headers
-      },
+        },
       }) as { data: SignUpResponse }
       return response.data
     },

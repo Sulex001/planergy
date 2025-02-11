@@ -42,9 +42,8 @@ const Company = () => {
 
 
     const onSubmit: SubmitHandler<CompanySchema> =  (data) => {
-        console.log(data);
+      
         if (data) {
-          
           // setCompleted(true);
           getNextPage(currentPage as string, setCurrentPage as React.Dispatch<React.SetStateAction<string>>, data as CompanySchema);
           }
