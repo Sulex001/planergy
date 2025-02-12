@@ -29,7 +29,7 @@ const useLogin = () => {
     },
     onSuccess: (data: LoginResponse) => {
       localStorage.setItem("user", JSON.stringify(data))
-      localStorage.setItem("token", JSON.stringify(data.token));
+      localStorage.setItem("token", JSON.stringify(data.token))
     
       if(data){
         dispatch({ type: "SIGN_IN", payload: data })

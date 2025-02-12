@@ -15,6 +15,7 @@ import { useFormNavigation } from "@/hooks/useFormNavigation"
 import { useState } from "react"
 
 
+
 enum CurrentPage {
   GET_STARTED = "get_started",
 }
@@ -35,12 +36,9 @@ const SignUpForm: React.FC = () => {
 
   const onSubmit = (data: SignUpSchema) => {
     if(data.password === data.confirmPassword) {
-   const userData = {
-    email: data.email,
-    password: data.password,
-    username: data.username,
-   }
-   signUp(userData)
+      console.log(data)
+      const {email, password,username} = data
+     signUp({email, password, username })
    
    const getStarted = {
     email: data.email,

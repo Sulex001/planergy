@@ -10,13 +10,14 @@ export interface UserCredentials {
   companyId: string;
   role: string;
   phoneNumber: string;
-  displayName: string;
+  username: string;
   online: boolean;
 }
 export interface User {
 token: null| string ;
 user: UserCredentials
 }
+
 
 export type UserDetails = {
   user: User | null;
