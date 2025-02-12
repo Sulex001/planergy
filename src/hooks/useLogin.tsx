@@ -3,6 +3,7 @@ import type { User } from "@/contexts/AuthContext"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 interface LoginData {
   email: string
@@ -30,10 +31,19 @@ const useLogin = () => {
     onSuccess: (data: LoginResponse) => {
       localStorage.setItem("user", JSON.stringify(data))
       localStorage.setItem("token", JSON.stringify(data.token))
-    
+      dispatch({ type: "SIGN_IN", payload: data })
       if(data){
-        dispatch({ type: "SIGN_IN", payload: data })
         console.log(data)
+        toast.success("Login successful", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         navigate("/dashboard");
       }
     },

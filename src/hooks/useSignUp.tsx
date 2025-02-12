@@ -43,6 +43,7 @@ const useSignUp = () => {
       console.error("Sign-up error:", error.message)
       return { error: error.message }
     }
+
   })
   
   
