@@ -6,23 +6,11 @@ import { toast } from 'react-toastify'
 
 
 const useQuery = () => {
-  const baseUrl = import.meta.env.VITE_API_URL
   
 
-//   const handleError = (error: unknown) => {
-//     if (isAxiosError(error)) {
-//       const axiosError = error as AxiosError<{ message?: string }>
-//       toast.error(axiosError.response?.data?.message || "An error occurred")
-//     } else if (error instanceof Error) {
-//       toast.error(error.message)
-//     } else {
-//       toast.error('An unexpected error occurred')
-//     }
-//   }
-
-  const getDocs = async (baseString: string) => {
+  const getDocs = async (baseUrl: string) => {
     try {
-      const response = await axios.get(`${baseUrl}/${baseString}`)
+      const response = await axios.get(`${baseUrl}`)
       return response.data
     } catch (error) {
     console.log(error);
@@ -30,9 +18,10 @@ const useQuery = () => {
     }
   }
 
-  const getDoc = async (id: number, baseString: string) => {
+
+  const getDoc = async (id: number, baseUrl :string) => {
     try {
-      const response = await axios.get(`${baseUrl}/${baseString}/${id}`)
+      const response = await axios.get(`${baseUrl}/${id}`)
       return response.data
     } catch (error){ 
         console.log(error)

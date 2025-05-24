@@ -25,7 +25,7 @@ const Summary = () => {
       companyName: companyData.company,
       phoneNumber: personalData.phoneNumber,
     }
-
+    
 
 const handleBack = () => {
      

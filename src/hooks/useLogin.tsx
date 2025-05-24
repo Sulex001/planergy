@@ -27,7 +27,7 @@ const useLogin = () => {
       // sending the login data to the server
       const response = await axios.post(`${API_URL}/api/user/login`, data);
       return response.data
-    },
+    }, 
     onSuccess: (data: LoginResponse) => {
       localStorage.setItem("user", JSON.stringify(data))
       localStorage.setItem("token", JSON.stringify(data.token))

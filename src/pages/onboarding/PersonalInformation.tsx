@@ -79,7 +79,7 @@ const PersonalInformation: React.FC = () => {
     setImageError(null)
     setImage(file)
   }
-
+  
   return (
     <div>
       <Nav2 completed={completed} setCompleted={setCompleted} name="Personal" />

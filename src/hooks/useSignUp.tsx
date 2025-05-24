@@ -1,4 +1,4 @@
-import { useAuthContext } from "@/hooks/UseAuthContext"
+ import { useAuthContext } from "@/hooks/UseAuthContext"
 import type { User } from "@/contexts/AuthContext"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
@@ -16,8 +16,7 @@ interface SignUpResponse {
   token: string
 }
 
-const API_URL = import.meta.env.VITE_API_URL
-
+const API_URL = import.meta.env.VITE_API_URL;
 
 const useSignUp = () => {
   const navigate = useNavigate();

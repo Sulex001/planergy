@@ -1,7 +1,5 @@
 import { createContext, useReducer,ReactNode, useEffect,} from "react";
 
-
-
 export interface UserCredentials {
   email: string;
   password: string;
@@ -39,12 +37,12 @@ type Action =
   | { type: 'SIGN_OUT'; payload: UserDetails }
   | { type: 'AUTH_IS_READY'; payload: UserDetails }
 
-type UserDetailsContextType = {
+export type UserDetailsContextType = {
   state: State;
   dispatch: React.Dispatch<Action>;
 }
 
-export const AuthContext = createContext<UserDetailsContextType | undefined>(undefined)
+export const AuthContext = createContext<UserDetailsContextType | undefined>(undefined);
 
 
 const AuthReducer = (state: State, action: Action): State => {
